@@ -1,0 +1,31 @@
+server_addr: "cross.echosite.cn:4443"
+# server_addr 不要把你的前缀加在这里，如果你是cross域名的服务器，你只需要把 easy 部分替换为 cross，懂我意思吧。
+# inspect_addr: "127.0.0.1:4040"
+# inspect_addr 这里也基本不需要改，除非你想自定义小助手访问接口
+echosite_id: "18704655002"
+# 这是你的账号，注意，是手机号
+echosite_token: "$2y$10$LjdArEMiVaZ4HWOfwHPwb.Eh4abghIxjZPV4yjCdyYj0RbvE3Xb56"
+# 这是你的密钥，在控制台客户端下载页面可以看到，替换成自己的就好，谷歌浏览器关掉翻译，不然可能是错的。
+
+# 然后以下是你的EchoSite映射的地址配置，比如你映射的是127.0.0.1:8000，那你就首先确保这个地址可以直接访问。
+# 否则映射即使开启成功了，你也访问不到。
+
+# 如下，我有三个示例，分别是web_a、web_b、tcp_a ，这个名字你可以自定义。
+# proto是你的协议类别，请留意https和http，是不同的，最好看清楚自己抢注的域名协议，不属于你的域名是开启不了的。
+# tcp_a 是tcp协议，remote_port 是你抢注的端口。而tcp后面的8080是你本机开启的端口。
+tunnels:
+  web_a:
+    subdomain: gaoxipeng
+    proto:
+      http: 127.0.0.1:9010
+
+
+
+# 常用命令，记住一定要到客户端所在目录，并确保有执行权限
+# 开启全部映射
+# linux ：    ./echosite -config=./config.yml start-all
+# windows:    echosite -config=config.yml start-all
+
+# 指定某一个映射开启，比如下面我指定开启了web_a 和 web_b 开启了，windows的我指定了web_b 和 tcp_a 开启了。
+# linux ：    ./echosite -config=./config.yml start web_a web_b
+# windows:    echosite -config=config.yml start web_b tcp_a
